@@ -7,6 +7,8 @@ public class PlayerMovement : MonoBehaviour
 	private float _speed = 10;
 	private Rigidbody2D _rigidBody;
 	private Vector3 _mousePos;
+    private GameObject _currentWeapon;
+    public GameObject[] _weapons;
 
 	void Awake () 
 	{
@@ -40,9 +42,24 @@ public class PlayerMovement : MonoBehaviour
 
 		if(Input.GetMouseButton(0))
 		{
-			Debug.Log("Attack!");
+			
 		}
 
 	}
 
+    //If the player is standing on a weapon and presses the spacebar, he picks it up
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if(other.tag == "RangedWeapon" && Input.GetKeyDown("space"))
+        {
+            for (int i = 0; i < _weapons.Length; i++)
+                if(_weapons[i].name == other.name)
+                {
+                    _weapons[i].SetActive(true); 
+                }
+            Destroy(other.gameObject);
+        }
+
+   }
+         
 }
