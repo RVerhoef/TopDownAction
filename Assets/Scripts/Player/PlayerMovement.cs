@@ -7,18 +7,27 @@ public class PlayerMovement : MonoBehaviour
 	private float _speed = 10;
 	private Rigidbody2D _rigidBody;
 	private Vector3 _mousePos;
-    public GameObject _currentWeapon;
-    public GameObject _currentWeaponOverworld;
+    private GameObject _currentWeapon;
+    private GameObject _currentWeaponOverworld;
     public GameObject[] _weapons;
 
 	void Awake () 
 	{
 		_rigidBody = GetComponent<Rigidbody2D>();
-        for (int i = 0; i < gameObject.transform.childCount; i++)
-            if ()
+        
+        //Finds all the weapons on the player and puts them in the weapon array
+        int i = 0;
+        foreach (Transform child in transform)
+        {
+            if (child.tag == "RangedWeapon" || child.tag == "MeleeWeapon")
             {
-                
+                System.Array.Resize(ref _weapons, _weapons.Length + 1);
+                _weapons[i] = (child.gameObject);
+                i++;
             }
+
+        }
+       
     }
 
 	void Update () 
@@ -68,17 +77,12 @@ public class PlayerMovement : MonoBehaviour
             _currentWeaponOverworld = null;
         }
 
-        if (Input.GetMouseButton(0))
-        {
-            
-        }
-
     }
 
-    //If the player is standing on a weapon and presses the spacebar, he picks it up
     void OnTriggerStay2D(Collider2D other)
     {
-        if(other.tag == "RangedWeapon" && Input.GetKeyDown("space") && _currentWeapon.name == "Fist" || other.tag == "MeleeWeapon"  && Input.GetKeyDown("space") && _currentWeapon.name == "Fist")
+        //If the player is standing on a weapon and presses the spacebar, he picks it up
+        if (other.tag == "RangedWeapon" && Input.GetKeyDown("space") && _currentWeapon.name == "Fist" || other.tag == "MeleeWeapon"  && Input.GetKeyDown("space") && _currentWeapon.name == "Fist")
         {
             _currentWeapon.SetActive(false);
             for (int i = 0; i < _weapons.Length; i++)
