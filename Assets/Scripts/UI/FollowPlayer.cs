@@ -23,7 +23,5 @@ public class FollowPlayer : MonoBehaviour
             //transform.position = Vector3.MoveTowards (transform.position, new Vector3(_player.transform.position.x, _player.transform.position.y, -10), step);
             transform.position = _player.position + _offset;
         }
-
 	}
-
 }

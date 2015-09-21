@@ -4,7 +4,7 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour 
 {
-	private float _speed = 10;
+	private float _speed = 5;
 	private Rigidbody2D _rigidBody;
 	private Vector3 _mousePos;
     private GameObject _currentWeapon;
@@ -25,9 +25,7 @@ public class PlayerMovement : MonoBehaviour
                 _weapons[i] = (child.gameObject);
                 i++;
             }
-
         }
-       
     }
 
 	void Update () 
@@ -64,7 +62,6 @@ public class PlayerMovement : MonoBehaviour
                     _weapons[i].SetActive(true);
                     _currentWeapon = _weapons[i];
                 }
-
         }
 
         //If the player already has a weapon, he can drop it and gain his fists back
@@ -76,7 +73,6 @@ public class PlayerMovement : MonoBehaviour
             _currentWeaponOverworld.SetActive(true);
             _currentWeaponOverworld = null;
         }
-
     }
 
     void OnTriggerStay2D(Collider2D other)
@@ -94,7 +90,5 @@ public class PlayerMovement : MonoBehaviour
             _currentWeaponOverworld = other.gameObject;
             other.gameObject.SetActive(false);
         }
-
-   }
-         
+    }    
 }
