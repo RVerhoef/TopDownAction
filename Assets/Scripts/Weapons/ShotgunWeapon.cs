@@ -3,11 +3,12 @@ using System.Collections;
 
 public class ShotgunWeapon : MonoBehaviour
 {
-    public GameObject _bullet;
+    [SerializeField]private GameObject _bullet;
+    public Transform parent;
 
-    void Start()
+    void Awake()
     {
-
+        parent = transform.parent;
     }
 
     void Update()
@@ -15,9 +16,9 @@ public class ShotgunWeapon : MonoBehaviour
         
         if (Input.GetMouseButtonDown(0))
         {
-            Instantiate(_bullet, transform.position, Quaternion.Euler(0, 0, transform.rotation.z + 15));
+            Instantiate(_bullet, transform.position, Quaternion.Euler(transform.rotation.x, transform.rotation.y, parent.transform.rotation.z + 15));
             Instantiate(_bullet, transform.position, transform.rotation);
-            Instantiate(_bullet, transform.position, Quaternion.Euler(0, 0, transform.rotation.z - 15));
+            Instantiate(_bullet, transform.position, Quaternion.Euler(transform.rotation.x, transform.rotation.y, parent.transform.rotation.z - 15));
         }
     }
 }

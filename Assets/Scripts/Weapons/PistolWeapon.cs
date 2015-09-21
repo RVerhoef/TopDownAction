@@ -4,12 +4,12 @@ using System.Collections;
 
 public class PistolWeapon : MonoBehaviour
 {
-    public GameObject _bullet;
+    [SerializeField]private GameObject _bullet;
 
-	void Start ()
+	void Awake ()
     {
-	
-	}
+       
+    }
 	
 	void Update ()
     {
