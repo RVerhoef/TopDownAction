@@ -163,6 +163,7 @@ GameObject:
   - 4: {fileID: 470946646}
   - 212: {fileID: 470946645}
   - 61: {fileID: 470946644}
+  - 114: {fileID: 470946647}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: RangedWeapon
@@ -221,6 +222,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
+--- !u!114 &470946647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 470946643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b949431ec1b21343a0b11de509dad23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &571002540
 GameObject:
   m_ObjectHideFlags: 0
@@ -301,6 +313,7 @@ GameObject:
   - 50: {fileID: 704330110}
   - 61: {fileID: 704330109}
   - 114: {fileID: 704330108}
+  - 114: {fileID: 704330113}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -319,7 +332,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1aa90d77dc04af4fbaa77b7c1a105dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weapons: []
 --- !u!61 &704330109
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -393,6 +405,18 @@ Transform:
   - {fileID: 1288557455}
   m_Father: {fileID: 0}
   m_RootOrder: 1
+--- !u!114 &704330113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 704330107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4e85688ab44174498df6d6547b70f5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weapons: []
 --- !u!1 &755777715
 GameObject:
   m_ObjectHideFlags: 0
@@ -623,7 +647,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bullet: {fileID: 146348, guid: be50d80a8d70356429734ed961a4fc1b, type: 2}
-  parent: {fileID: 0}
 --- !u!1 &1288557454
 GameObject:
   m_ObjectHideFlags: 0
@@ -883,6 +906,7 @@ GameObject:
   - 4: {fileID: 1837266478}
   - 212: {fileID: 1837266480}
   - 61: {fileID: 1837266479}
+  - 114: {fileID: 1837266481}
   m_Layer: 0
   m_Name: SMG
   m_TagString: RangedWeapon
@@ -941,6 +965,18 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9a636ac6a08843b48a6c450ea080b645, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &1837266481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1837266477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b69141fd6ed5ffa4b9776978fb3b2c73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bullet: {fileID: 146348, guid: be50d80a8d70356429734ed961a4fc1b, type: 2}
 --- !u!1 &2039221765
 GameObject:
   m_ObjectHideFlags: 0
@@ -952,8 +988,8 @@ GameObject:
   - 212: {fileID: 2039221767}
   - 61: {fileID: 2039221766}
   m_Layer: 0
-  m_Name: Knife
-  m_TagString: MeleeWeapon
+  m_Name: SMG
+  m_TagString: RangedWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

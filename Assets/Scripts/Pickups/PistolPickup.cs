@@ -2,12 +2,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class PistolPickup : MonoBehaviour, IShootable<int,int>
+public class PistolPickup : MonoBehaviour
 {
-	
-	public void Shoot(int damage, int ammo)
-	{
-        Debug.Log("Bang!");
-	}
 	
 }
