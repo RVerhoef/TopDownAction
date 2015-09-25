@@ -6,7 +6,7 @@ public class SMGWeapon : MonoBehaviour
 {
     [SerializeField]private GameObject _bullet;
     private int _ammoCounter = 30;
-    private int _shotTimer = 0;
+    private int _shotTimer;
 
     void Awake()
     {

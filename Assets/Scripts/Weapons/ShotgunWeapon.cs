@@ -6,7 +6,9 @@ public class ShotgunWeapon : MonoBehaviour
 {
     [SerializeField]private GameObject _bullet;
     private int _ammoCounter = 6;
-    private float _spread;
+    private float _spreadLeft;
+    private float _spreadRight;
+
 
     void Awake()
     {
@@ -15,15 +17,14 @@ public class ShotgunWeapon : MonoBehaviour
 
     void Update()
     {
-        _spread = transform.rotation.z;
-        
+        _spreadLeft = transform.eulerAngles.z + 10f;
+        _spreadRight = transform.eulerAngles.z - 10f;
+
         if (Input.GetMouseButtonDown(0) && _ammoCounter > 0)
         {
-            Instantiate(_bullet, transform.position, Quaternion.Euler(transform.rotation.x, transform.rotation.y, transform.rotation.z));
-            Debug.Log(transform.rotation);
-            //Instantiate(_bullet, transform.position, transform.rotation);
-            //Instantiate(_bullet, transform.position, Quaternion.Euler(transform.rotation.z, transform.rotation.x, transform.rotation.y));
-            Debug.Log(transform.rotation);
+            Instantiate(_bullet, transform.position, Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, _spreadLeft));
+            Instantiate(_bullet, transform.position, transform.rotation);
+            Instantiate(_bullet, transform.position, Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, _spreadRight));
             _ammoCounter--;
         }
     }
