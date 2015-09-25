@@ -2,7 +2,7 @@
 using UnityEngine;
 using System.Collections;
 
-public interface IShootable<T,U>
+public interface IShootable
 {
-    void Shoot(T damage, U ammo);
+    void Shoot();
 }

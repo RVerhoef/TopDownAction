@@ -2,10 +2,9 @@
 using UnityEngine;
 using System.Collections;
 
-public class PistolWeapon : MonoBehaviour
+public class PistolWeapon : MonoBehaviour, IShootable
 {
-    [SerializeField]private GameObject _bullet;
-    private int _ammoCounter = 12;
+    private int _ammo = 12;
 
     void Awake ()
     {
@@ -14,10 +13,24 @@ public class PistolWeapon : MonoBehaviour
 	
 	void Update ()
     {
-        if(Input.GetMouseButtonDown(0) && _ammoCounter > 0)
+        //If the left mouse button is pressed a single bullet is fired until the ammo is used up
+        if (Input.GetMouseButtonDown(0))
         {
-            Instantiate(_bullet, transform.position, transform.rotation);
-            _ammoCounter--;
+            Shoot();
         }
 	}
+
+    public void Shoot()
+    {
+        if(_ammo > 0)
+        { 
+            Instantiate(Resources.Load("Prefabs/Weapons/Bullet"), transform.position, transform.rotation);
+            _ammo--;
+            Debug.Log(_ammo);
+        }
+        else
+        {
+            Debug.Log("Out of ammo!");
+        }
+    }
 }

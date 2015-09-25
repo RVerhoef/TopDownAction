@@ -2,10 +2,9 @@
 using UnityEngine;
 using System.Collections;
 
-public class ShotgunWeapon : MonoBehaviour
+public class ShotgunWeapon : MonoBehaviour, IShootable
 {
-    [SerializeField]private GameObject _bullet;
-    private int _ammoCounter = 6;
+    private int _ammo = 6;
     private float _spreadLeft;
     private float _spreadRight;
 
@@ -20,12 +19,25 @@ public class ShotgunWeapon : MonoBehaviour
         _spreadLeft = transform.eulerAngles.z + 10f;
         _spreadRight = transform.eulerAngles.z - 10f;
 
-        if (Input.GetMouseButtonDown(0) && _ammoCounter > 0)
+        //If the left mouse button is pressed a cone of bullets is fired until the ammo is used up
+        if (Input.GetMouseButtonDown(0))
         {
-            Instantiate(_bullet, transform.position, Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, _spreadLeft));
-            Instantiate(_bullet, transform.position, transform.rotation);
-            Instantiate(_bullet, transform.position, Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, _spreadRight));
-            _ammoCounter--;
+            Shoot();
+        }
+    }
+
+    public void Shoot()
+    {
+        if(_ammo > 0)
+        { 
+        Instantiate(Resources.Load("Prefabs/Weapons/Bullet"), transform.position, Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, _spreadLeft));
+        Instantiate(Resources.Load("Prefabs/Weapons/Bullet"), transform.position, transform.rotation);
+        Instantiate(Resources.Load("Prefabs/Weapons/Bullet"), transform.position, Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, _spreadRight));
+        _ammo--;
+        }
+        else
+        {
+            Debug.Log("Out of ammo!");
         }
     }
 }
