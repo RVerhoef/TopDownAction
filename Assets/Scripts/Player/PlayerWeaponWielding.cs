@@ -35,7 +35,6 @@ public class PlayerWeaponWielding : MonoBehaviour
                     _currentWeapon = _weapons[i];
                 }
         }
-
         //If the player already has a weapon, he can drop it and gain his fists back
         if (Input.GetKeyDown("g") && _currentWeapon != null && _currentWeapon.name != "Fist")
         {

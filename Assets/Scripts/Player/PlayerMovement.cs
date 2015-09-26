@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
 		_rigidBody = GetComponent<Rigidbody2D>();
     }
 
-	void Update () 
+	void FixedUpdate () 
 	{
 		//Player can move in 8 directions by pressing a combinations of the movement keys
 		if(Input.GetAxis ("Horizontal") < 0 || Input.GetAxis ("Horizontal") > 0)
@@ -33,7 +33,6 @@ public class PlayerMovement : MonoBehaviour
 		{
 			_rigidBody.velocity = new Vector2 (_rigidBody.velocity.x, 0);
 		}
-
 		//Player rotates towards the mouse pointer / recticle 
 		_mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		transform.rotation = Quaternion.LookRotation(Vector3.forward, _mousePos - transform.position);
