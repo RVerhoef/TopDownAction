@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿//Written By Rob Verhoef
+using UnityEngine;
 using System.Collections;
 
 public class Bullet : MonoBehaviour
@@ -11,9 +12,13 @@ public class Bullet : MonoBehaviour
         _rigidBody = GetComponent<Rigidbody2D>();
         _rigidBody.AddForce(transform.up * _bulletForce);
     }
-	
-	void Update ()
+
+    void OnTriggerEnter2D (Collider2D other)
     {
-	
-	}
+        //Bullet is destroyed when it hits a static object
+        if(other.tag == "StaticObject")
+        {
+            Destroy(gameObject);
+        }
+    }
 }

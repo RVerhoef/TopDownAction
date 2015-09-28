@@ -4,7 +4,6 @@ using System.Collections;
 
 public class ShotgunWeapon : MonoBehaviour, IShootable
 {
-    private int _ammo = 6;
     private float _spreadLeft;
     private float _spreadRight;
     private Transform _muzzle;
@@ -30,12 +29,12 @@ public class ShotgunWeapon : MonoBehaviour, IShootable
 
     public void Shoot()
     {
-        if(_ammo > 0)
+        if(transform.parent.GetComponent<PlayerWeaponWielding>().currentAmmo > 0)
         { 
         Instantiate(Resources.Load("Prefabs/Weapons/Bullet"), _muzzle.position, Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, _spreadLeft));
         Instantiate(Resources.Load("Prefabs/Weapons/Bullet"), _muzzle.position, transform.rotation);
         Instantiate(Resources.Load("Prefabs/Weapons/Bullet"), _muzzle.position, Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, _spreadRight));
-        _ammo--;
+        transform.parent.GetComponent<PlayerWeaponWielding>().currentAmmo--;
         }
         else
         {

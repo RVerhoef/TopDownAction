@@ -4,11 +4,10 @@ using System.Collections;
 
 public class SMGWeapon : MonoBehaviour, IShootable
 {
-    private int _ammo = 30;
     private int _shotTimer;
     private Transform _muzzle;
 
-    void Awake()
+    void Start()
     {
         _muzzle = transform.FindChild("Muzzle");
     }
@@ -29,11 +28,11 @@ public class SMGWeapon : MonoBehaviour, IShootable
 
     public void Shoot()
     {
-        if(_ammo > 0)
+        if (transform.parent.GetComponent<PlayerWeaponWielding>().currentAmmo > 0)
         {
         Instantiate(Resources.Load("Prefabs/Weapons/Bullet"), _muzzle.position, transform.rotation);
         _shotTimer += 5;
-        _ammo--;
+            transform.parent.GetComponent<PlayerWeaponWielding>().currentAmmo--;
         }
         else
         {

@@ -4,7 +4,6 @@ using System.Collections;
 
 public class PistolWeapon : MonoBehaviour, IShootable
 {
-    private int _ammo = 12;
     private Transform _muzzle;
 
     void Awake ()
@@ -23,10 +22,10 @@ public class PistolWeapon : MonoBehaviour, IShootable
 
     public void Shoot()
     {
-        if(_ammo > 0)
+        if(transform.parent.GetComponent<PlayerWeaponWielding>().currentAmmo > 0)
         { 
             Instantiate(Resources.Load("Prefabs/Weapons/Bullet"), _muzzle.position, transform.rotation);
-            _ammo--;
+            transform.parent.GetComponent<PlayerWeaponWielding>().currentAmmo--;
         }
         else
         {

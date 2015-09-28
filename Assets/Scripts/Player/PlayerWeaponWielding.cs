@@ -6,7 +6,8 @@ public class PlayerWeaponWielding : MonoBehaviour
 {
     private GameObject _currentWeapon;
     private GameObject _currentWeaponOverworld;
-    public GameObject[] _weapons;
+    public GameObject[] weapons;
+    public int currentAmmo;
 
     void Awake ()
     {
@@ -16,8 +17,8 @@ public class PlayerWeaponWielding : MonoBehaviour
         {
             if (child.tag == "RangedWeapon" || child.tag == "MeleeWeapon")
             {
-                System.Array.Resize(ref _weapons, _weapons.Length + 1);
-                _weapons[i] = (child.gameObject);
+                System.Array.Resize(ref weapons, weapons.Length + 1);
+                weapons[i] = (child.gameObject);
                 i++;
             }
         }
@@ -28,11 +29,11 @@ public class PlayerWeaponWielding : MonoBehaviour
         //Player gets his fists out if he holds no other weapon
         if (_currentWeapon == null)
         {
-            for (int i = 0; i < _weapons.Length; i++)
-                if (_weapons[i].name == "Fist")
+            for (int i = 0; i < weapons.Length; i++)
+                if (weapons[i].name == "Fist")
                 {
-                    _weapons[i].SetActive(true);
-                    _currentWeapon = _weapons[i];
+                    weapons[i].SetActive(true);
+                    _currentWeapon = weapons[i];
                 }
         }
         //If the player already has a weapon, he can drop it and gain his fists back
@@ -42,6 +43,7 @@ public class PlayerWeaponWielding : MonoBehaviour
             _currentWeapon = null;
             _currentWeaponOverworld.transform.position = gameObject.transform.position;
             _currentWeaponOverworld.SetActive(true);
+            _currentWeaponOverworld.GetComponent<WeaponPickup>()._ammo = currentAmmo;
             _currentWeaponOverworld = null;
         }
     }
@@ -52,13 +54,14 @@ public class PlayerWeaponWielding : MonoBehaviour
         if (other.tag == "RangedWeapon" && Input.GetKeyDown("space") && _currentWeapon.name == "Fist" || other.tag == "MeleeWeapon" && Input.GetKeyDown("space") && _currentWeapon.name == "Fist")
         {
             _currentWeapon.SetActive(false);
-            for (int i = 0; i < _weapons.Length; i++)
-                if (_weapons[i].name == other.name)
+            for (int i = 0; i < weapons.Length; i++)
+                if (weapons[i].name == other.name)
                 {
-                    _weapons[i].SetActive(true);
-                    _currentWeapon = _weapons[i];
+                    weapons[i].SetActive(true);
+                    _currentWeapon = weapons[i];
                 }
             _currentWeaponOverworld = other.gameObject;
+            currentAmmo = other.GetComponent<WeaponPickup>()._ammo;
             other.gameObject.SetActive(false);
         }
     }
